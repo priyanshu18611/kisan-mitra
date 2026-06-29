@@ -4,183 +4,73 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Kisan Mitra — Smart Farming Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-/* ─── TOKENS ─────────────────────────────────────── */
 :root {
-  --soil:   #2d1a0e;
-  --earth:  #4a2c1a;
-  --bark:   #7c4a2d;
-  --wheat:  #e8b96a;
-  --leaf:   #3d7a3f;
-  --sprout: #5fa861;
-  --sky:    #7ab8d4;
-  --rain:   #4a90b8;
-  --cream:  #faf6ef;
-  --paper:  #f0e8d8;
-  --ink:    #1a1208;
-  --dust:   #8a7560;
-  --muted:  #b0956e;
-  --card:   #fffcf5;
-  --border: #e2d5bc;
-  --shadow: rgba(45,26,14,0.10);
-  --r: 10px;
+  --soil:#2d1a0e; --earth:#4a2c1a; --bark:#7c4a2d; --wheat:#e8b96a;
+  --leaf:#3d7a3f; --sprout:#5fa861; --sky:#7ab8d4; --rain:#4a90b8;
+  --cream:#faf6ef; --paper:#f0e8d8; --ink:#1a1208; --dust:#8a7560;
+  --muted:#b0956e; --card:#fffcf5; --border:#e2d5bc; --r:10px;
 }
-
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--cream);
-  color:var(--ink);
-  min-height:100vh;
-}
-
-/* ─── LAYOUT ──────────────────────────────────────── */
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;}
 .app{display:grid;grid-template-columns:240px 1fr;min-height:100vh;}
 
-/* ─── SIDEBAR ─────────────────────────────────────── */
-.sidebar{
-  background:var(--soil);
-  padding:28px 0;
-  position:sticky;top:0;height:100vh;
-  display:flex;flex-direction:column;
-  border-right:1px solid var(--earth);
-}
-.logo{
-  padding:0 24px 28px;
-  border-bottom:1px solid rgba(255,255,255,0.08);
-  margin-bottom:16px;
-}
-.logo-icon{font-size:2rem;line-height:1;}
-.logo-name{
-  font-size:1.2rem;font-weight:700;
-  color:var(--wheat);letter-spacing:-0.3px;margin-top:6px;
-}
+/* SIDEBAR */
+.sidebar{background:var(--soil);padding:28px 0;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;border-right:1px solid var(--earth);}
+.logo{padding:0 24px 28px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:16px;}
+.logo-icon{font-size:2rem;}
+.logo-name{font-size:1.2rem;font-weight:700;color:var(--wheat);margin-top:6px;}
 .logo-sub{font-size:0.72rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
-
 .nav-section{padding:8px 12px 0;margin-bottom:4px;}
 .nav-label{font-size:0.65rem;color:var(--dust);text-transform:uppercase;letter-spacing:1.2px;padding:0 12px;margin-bottom:8px;}
-.nav-item{
-  display:flex;align-items:center;gap:12px;
-  padding:10px 12px;border-radius:8px;
-  color:var(--muted);font-size:0.88rem;font-weight:500;
-  cursor:pointer;transition:all .2s;text-decoration:none;
-  border:none;background:none;width:100%;text-align:left;
-}
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;color:var(--muted);font-size:0.88rem;font-weight:500;cursor:pointer;transition:all .2s;border:none;background:none;width:100%;text-align:left;}
 .nav-item:hover{background:rgba(255,255,255,0.06);color:var(--cream);}
 .nav-item.active{background:rgba(93,168,97,0.18);color:var(--sprout);}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--dust);flex-shrink:0;}
 .nav-item.active .nav-dot{background:var(--sprout);}
-.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--dust);flex-shrink:0;transition:.2s;}
-
-.sidebar-footer{
-  margin-top:auto;padding:20px 24px 0;
-  border-top:1px solid rgba(255,255,255,0.06);
-}
-.farmer-card{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:var(--r);padding:14px;
-  display:flex;align-items:center;gap:12px;
-}
-.farmer-avatar{
-  width:36px;height:36px;border-radius:50%;
-  background:linear-gradient(135deg,var(--leaf),var(--sprout));
-  display:flex;align-items:center;justify-content:center;
-  font-size:1rem;flex-shrink:0;
-}
+.sidebar-footer{margin-top:auto;padding:20px 24px 0;border-top:1px solid rgba(255,255,255,0.06);}
+.farmer-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r);padding:14px;display:flex;align-items:center;gap:12px;}
+.farmer-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--leaf),var(--sprout));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
 .farmer-name{font-size:0.85rem;font-weight:600;color:var(--cream);}
 .farmer-loc{font-size:0.72rem;color:var(--muted);}
 
-/* ─── MAIN ────────────────────────────────────────── */
-.main{display:flex;flex-direction:column;overflow-x:hidden;}
-
-/* ─── TOPBAR ──────────────────────────────────────── */
-.topbar{
-  background:var(--card);
-  border-bottom:1px solid var(--border);
-  padding:16px 32px;
-  display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:100;
-}
-.topbar-title{font-size:1rem;font-weight:600;color:var(--ink);}
+/* MAIN */
+.main{display:flex;flex-direction:column;}
+.topbar{background:var(--card);border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.topbar-title{font-size:1rem;font-weight:600;}
 .topbar-date{font-size:0.82rem;color:var(--dust);}
-.topbar-right{display:flex;align-items:center;gap:12px;}
-.badge{
-  padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;
-  display:flex;align-items:center;gap:6px;
-}
+.topbar-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.badge{padding:6px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;display:flex;align-items:center;gap:6px;}
 .badge-green{background:#e8f5e9;color:var(--leaf);}
 .badge-blue{background:#e3f2fd;color:var(--rain);}
-.badge-orange{background:#fff3e0;color:#e65100;}
-.alert-dot{
-  width:8px;height:8px;border-radius:50%;background:#ef4444;
-  animation:pulse 2s ease-in-out infinite;
-}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.6;transform:scale(1.3);}}
-
-/* ─── CONTENT ─────────────────────────────────────── */
 .content{padding:28px 32px;flex:1;}
 
-/* ─── WEATHER HERO ────────────────────────────────── */
-.weather-hero{
-  background:linear-gradient(135deg,#1a3a5c 0%,#2d6a9f 50%,#4a90b8 100%);
-  border-radius:16px;padding:28px 32px;
-  display:grid;grid-template-columns:1fr auto;
-  align-items:center;gap:24px;
-  margin-bottom:24px;position:relative;overflow:hidden;
-  box-shadow:0 8px 32px rgba(26,58,92,0.25);
-}
-.weather-hero::before{
-  content:'';position:absolute;top:-40px;right:60px;
-  width:180px;height:180px;border-radius:50%;
-  background:rgba(255,255,255,0.06);
-}
-.weather-hero::after{
-  content:'';position:absolute;top:20px;right:20px;
-  width:100px;height:100px;border-radius:50%;
-  background:rgba(255,255,255,0.04);
-}
+/* LOADING / ERROR */
+.status-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:40px;text-align:center;margin-bottom:24px;}
+.status-icon{font-size:3rem;margin-bottom:16px;}
+.status-title{font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.status-desc{font-size:0.88rem;color:var(--dust);line-height:1.6;}
+.spin{animation:spin 1s linear infinite;display:inline-block;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* WEATHER HERO */
+.weather-hero{background:linear-gradient(135deg,#1a3a5c 0%,#2d6a9f 50%,#4a90b8 100%);border-radius:16px;padding:28px 32px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;margin-bottom:24px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(26,58,92,0.25);}
+.weather-hero::before{content:'';position:absolute;top:-40px;right:60px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.06);}
 .weather-left{position:relative;z-index:1;}
-.weather-location{
-  font-size:0.8rem;color:rgba(255,255,255,0.7);
-  text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;
-  display:flex;align-items:center;gap:6px;
-}
-.weather-temp{
-  font-size:3.5rem;font-weight:700;color:#fff;line-height:1;
-  margin-bottom:8px;
-}
+.weather-location{font-size:0.8rem;color:rgba(255,255,255,0.75);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.weather-temp{font-size:3.5rem;font-weight:700;color:#fff;line-height:1;margin-bottom:8px;}
 .weather-desc{font-size:1rem;color:rgba(255,255,255,0.85);}
-.weather-advice{
-  margin-top:14px;padding:10px 16px;
-  background:rgba(255,255,255,0.12);
-  border-radius:8px;font-size:0.85rem;color:rgba(255,255,255,0.9);
-  border-left:3px solid var(--wheat);
-  backdrop-filter:blur(4px);
-}
-.weather-stats{
-  display:grid;grid-template-columns:1fr 1fr;gap:12px;
-  position:relative;z-index:1;
-}
-.w-stat{
-  background:rgba(255,255,255,0.12);border-radius:10px;
-  padding:14px 16px;text-align:center;backdrop-filter:blur(4px);
-  border:1px solid rgba(255,255,255,0.1);
-}
+.weather-advice{margin-top:14px;padding:10px 16px;background:rgba(255,255,255,0.12);border-radius:8px;font-size:0.85rem;color:rgba(255,255,255,0.9);border-left:3px solid var(--wheat);}
+.weather-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative;z-index:1;}
+.w-stat{background:rgba(255,255,255,0.12);border-radius:10px;padding:14px 16px;text-align:center;border:1px solid rgba(255,255,255,0.1);}
 .w-stat-val{font-size:1.4rem;font-weight:700;color:#fff;}
 .w-stat-label{font-size:0.72rem;color:rgba(255,255,255,0.65);margin-top:2px;}
 
-/* ─── WEEK FORECAST ───────────────────────────────── */
-.forecast-row{
-  display:grid;grid-template-columns:repeat(7,1fr);gap:10px;
-  margin-bottom:24px;
-}
-.forecast-day{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:10px;padding:14px 8px;text-align:center;
-  transition:all .2s;cursor:default;
-}
+/* FORECAST */
+.forecast-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:24px;}
+.forecast-day{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 8px;text-align:center;transition:all .2s;}
 .forecast-day:hover{border-color:var(--sprout);transform:translateY(-2px);}
 .forecast-day.today{border-color:var(--sprout);background:#f0faf0;}
 .fc-day{font-size:0.72rem;color:var(--dust);font-weight:600;text-transform:uppercase;margin-bottom:8px;}
@@ -188,494 +78,439 @@ body{
 .fc-hi{font-size:0.9rem;font-weight:700;color:var(--ink);}
 .fc-lo{font-size:0.75rem;color:var(--dust);}
 
-/* ─── GRID 3 COL ──────────────────────────────────── */
+/* GRID */
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;}
 .grid2{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:24px;}
-
-/* ─── CARD ────────────────────────────────────────── */
-.card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r);padding:20px 22px;
-}
-.card-head{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:18px;
-}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
 .card-title{font-size:0.82rem;font-weight:700;color:var(--dust);text-transform:uppercase;letter-spacing:.8px;}
-.card-icon{font-size:1.2rem;}
 
-/* ─── SOIL METERS ─────────────────────────────────── */
+/* SOIL METERS */
 .soil-meters{display:flex;flex-direction:column;gap:14px;}
 .meter-row{display:flex;align-items:center;gap:12px;}
 .meter-label{font-size:0.82rem;color:var(--dust);width:90px;flex-shrink:0;}
 .meter-bar{flex:1;height:8px;background:var(--paper);border-radius:4px;overflow:hidden;}
 .meter-fill{height:100%;border-radius:4px;transition:width 1s ease;}
-.meter-val{font-size:0.82rem;font-weight:700;color:var(--ink);width:36px;text-align:right;}
+.meter-val{font-size:0.82rem;font-weight:700;width:36px;text-align:right;}
 .fill-blue{background:linear-gradient(90deg,#4a90b8,#7ab8d4);}
 .fill-brown{background:linear-gradient(90deg,var(--bark),var(--wheat));}
 .fill-green{background:linear-gradient(90deg,var(--leaf),var(--sprout));}
 .fill-orange{background:linear-gradient(90deg,#e65100,#ff9800);}
 
-/* ─── CROP CALENDAR ───────────────────────────────── */
+/* CROPS */
 .crop-list{display:flex;flex-direction:column;gap:10px;}
-.crop-item{
-  display:flex;align-items:center;gap:12px;
-  padding:12px 14px;background:var(--paper);
-  border-radius:8px;border:1px solid var(--border);
-}
+.crop-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--paper);border-radius:8px;border:1px solid var(--border);}
 .crop-emoji{font-size:1.4rem;flex-shrink:0;}
 .crop-info{flex:1;}
-.crop-name{font-size:0.88rem;font-weight:600;color:var(--ink);}
+.crop-name{font-size:0.88rem;font-weight:600;}
 .crop-status{font-size:0.75rem;color:var(--dust);margin-top:2px;}
-.crop-stage{
-  font-size:0.72rem;font-weight:600;
-  padding:4px 10px;border-radius:20px;
-}
+.crop-stage{font-size:0.72rem;font-weight:600;padding:4px 10px;border-radius:20px;}
 .stage-grow{background:#e8f5e9;color:var(--leaf);}
 .stage-ready{background:#fff8e1;color:#f57f17;}
-.stage-plant{background:#e3f2fd;color:var(--rain);}
 .stage-harvest{background:#fce4ec;color:#c62828;}
 
-/* ─── PEST ALERTS ─────────────────────────────────── */
+/* ALERTS */
 .alerts-list{display:flex;flex-direction:column;gap:10px;}
-.alert-item{
-  padding:14px;border-radius:8px;
-  border-left:3px solid;
-}
+.alert-item{padding:14px;border-radius:8px;border-left:3px solid;}
 .alert-high{background:#fff5f5;border-color:#ef4444;}
 .alert-med{background:#fffbeb;border-color:#f59e0b;}
 .alert-low{background:#f0fdf4;border-color:var(--sprout);}
-.alert-title{font-size:0.85rem;font-weight:700;color:var(--ink);}
+.alert-title{font-size:0.85rem;font-weight:700;}
 .alert-desc{font-size:0.78rem;color:var(--dust);margin-top:4px;line-height:1.5;}
-.alert-tag{
-  display:inline-block;margin-top:6px;
-  font-size:0.68rem;font-weight:700;
-  padding:2px 8px;border-radius:10px;text-transform:uppercase;
-}
+.alert-tag{display:inline-block;margin-top:6px;font-size:0.68rem;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;}
 .tag-high{background:#fee2e2;color:#991b1b;}
 .tag-med{background:#fef3c7;color:#92400e;}
 .tag-low{background:#dcfce7;color:#166534;}
 
-/* ─── MARKET PRICES ───────────────────────────────── */
+/* MARKET */
 .market-table{width:100%;border-collapse:collapse;}
-.market-table th{
-  font-size:0.72rem;color:var(--dust);font-weight:600;
-  text-transform:uppercase;letter-spacing:.6px;
-  padding:0 0 10px;text-align:left;border-bottom:1px solid var(--border);
-}
-.market-table td{
-  padding:12px 0;border-bottom:1px solid var(--paper);
-  font-size:0.88rem;vertical-align:middle;
-}
+.market-table th{font-size:0.72rem;color:var(--dust);font-weight:600;text-transform:uppercase;letter-spacing:.6px;padding:0 0 10px;text-align:left;border-bottom:1px solid var(--border);}
+.market-table td{padding:12px 0;border-bottom:1px solid var(--paper);font-size:0.88rem;vertical-align:middle;}
 .market-table tr:last-child td{border-bottom:none;}
-.crop-cell{display:flex;align-items:center;gap:8px;}
 .price-up{color:#16a34a;font-weight:700;}
 .price-dn{color:#dc2626;font-weight:700;}
-.price-arr{font-size:0.8rem;}
-.msp-badge{
-  font-size:0.7rem;background:#e8f5e9;color:var(--leaf);
-  padding:2px 8px;border-radius:10px;font-weight:600;
-}
+.msp-badge{font-size:0.7rem;background:#e8f5e9;color:var(--leaf);padding:2px 8px;border-radius:10px;font-weight:600;}
 
-/* ─── AI ADVICE BOX ───────────────────────────────── */
-.advice-box{
-  background:linear-gradient(135deg,var(--soil),var(--earth));
-  border-radius:var(--r);padding:24px 28px;margin-bottom:24px;
-  display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
-}
-.advice-tag{
-  font-size:0.72rem;font-weight:700;
-  color:var(--wheat);text-transform:uppercase;letter-spacing:1px;
-  margin-bottom:8px;
-}
+/* STAT CARDS */
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;}
+.sc-icon{font-size:1.6rem;margin-bottom:10px;}
+.sc-val{font-size:1.6rem;font-weight:700;}
+.sc-label{font-size:0.78rem;color:var(--dust);margin-top:2px;}
+.sc-trend{font-size:0.75rem;margin-top:6px;font-weight:600;color:var(--leaf);}
+
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;}
+.sec-title{font-size:0.95rem;font-weight:700;}
+
+/* AI ADVICE */
+.advice-box{background:linear-gradient(135deg,var(--soil),var(--earth));border-radius:var(--r);padding:24px 28px;margin-bottom:24px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;}
+.advice-tag{font-size:0.72rem;font-weight:700;color:var(--wheat);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
 .advice-text{font-size:0.95rem;color:rgba(255,255,255,0.88);line-height:1.7;}
 .advice-actions{display:flex;flex-direction:column;gap:8px;}
-.advice-btn{
-  padding:10px 20px;border-radius:8px;font-size:0.82rem;font-weight:600;
-  cursor:pointer;border:none;transition:all .2s;white-space:nowrap;
-}
+.advice-btn{padding:10px 20px;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;white-space:nowrap;}
 .btn-wheat{background:var(--wheat);color:var(--soil);}
-.btn-wheat:hover{background:#d4a455;transform:translateY(-1px);}
 .btn-ghost{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12);}
-.btn-ghost:hover{background:rgba(255,255,255,0.14);}
 
-/* ─── STAT CARDS ──────────────────────────────────── */
-.stat-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r);padding:18px 20px;
-}
-.sc-icon{font-size:1.6rem;margin-bottom:10px;}
-.sc-val{font-size:1.6rem;font-weight:700;color:var(--ink);}
-.sc-label{font-size:0.78rem;color:var(--dust);margin-top:2px;}
-.sc-trend{font-size:0.75rem;margin-top:6px;font-weight:600;}
-.trend-up{color:#16a34a;}
-.trend-dn{color:#dc2626;}
+/* LOCATION BTN */
+.loc-btn{background:var(--leaf);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:0.95rem;font-weight:600;cursor:pointer;margin-top:16px;transition:all .2s;}
+.loc-btn:hover{background:var(--sprout);transform:translateY(-2px);}
 
-/* ─── SECTION HEADER ──────────────────────────────── */
-.sec-head{
-  display:flex;align-items:baseline;justify-content:space-between;
-  margin-bottom:14px;
-}
-.sec-title{font-size:0.95rem;font-weight:700;color:var(--ink);}
-.sec-link{font-size:0.78rem;color:var(--leaf);font-weight:600;cursor:pointer;text-decoration:none;}
-
-/* ─── IRRIGATION SCHEDULE ─────────────────────────── */
-.irrigate-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
-.irr-day{
-  background:var(--paper);border:1px solid var(--border);
-  border-radius:8px;padding:10px 6px;text-align:center;
-}
-.irr-day.on{background:#e3f2fd;border-color:var(--rain);}
-.irr-day.today{border-color:var(--sprout);background:#f0faf0;}
-.irr-label{font-size:0.68rem;color:var(--dust);font-weight:600;text-transform:uppercase;}
-.irr-icon{font-size:1.1rem;margin:6px 0;}
-.irr-amt{font-size:0.72rem;color:var(--rain);font-weight:700;}
-
-/* ─── MOBILE ──────────────────────────────────────── */
 @media(max-width:900px){
   .app{grid-template-columns:1fr;}
   .sidebar{display:none;}
   .grid3{grid-template-columns:1fr 1fr;}
   .grid2{grid-template-columns:1fr;}
-  .forecast-row{grid-template-columns:repeat(4,1fr);}
-  .weather-hero{grid-template-columns:1fr;}
-  .content{padding:20px;}
-  .advice-box{grid-template-columns:1fr;}
-  .irrigate-grid{grid-template-columns:repeat(4,1fr);}
-}
-@media(max-width:560px){
-  .grid3{grid-template-columns:1fr;}
   .forecast-row{grid-template-columns:repeat(3,1fr);}
+  .weather-hero{grid-template-columns:1fr;}
+  .advice-box{grid-template-columns:1fr;}
+  .content{padding:20px;}
+}
+@media(max-width:480px){
+  .grid3{grid-template-columns:1fr;}
+  .forecast-row{grid-template-columns:repeat(2,1fr);}
 }
 </style>
 </head>
 <body>
 <div class="app">
 
-<!-- ── SIDEBAR ── -->
+<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="logo">
     <div class="logo-icon">🌾</div>
     <div class="logo-name">Kisan Mitra</div>
     <div class="logo-sub">Smart Farm Dashboard</div>
   </div>
-
   <div class="nav-section">
     <div class="nav-label">Dashboard</div>
-    <button class="nav-item active" onclick="setNav(this)">
-      <span class="nav-dot"></span>Overview
-    </button>
-    <button class="nav-item" onclick="setNav(this)">
-      <span class="nav-dot"></span>Weather Forecast
-    </button>
-    <button class="nav-item" onclick="setNav(this)">
-      <span class="nav-dot"></span>Soil Health
-    </button>
+    <button class="nav-item active"><span class="nav-dot"></span>Overview</button>
+    <button class="nav-item"><span class="nav-dot"></span>Weather Forecast</button>
+    <button class="nav-item"><span class="nav-dot"></span>Soil Health</button>
   </div>
-
   <div class="nav-section">
     <div class="nav-label">Farming</div>
-    <button class="nav-item" onclick="setNav(this)">
-      <span class="nav-dot"></span>My Crops
-    </button>
-    <button class="nav-item" onclick="setNav(this)">
-      <span class="nav-dot"></span>Irrigation
-    </button>
-    <button class="nav-item" onclick="setNav(this)">
-      <span class="nav-dot"></span>Pest Control
-    </button>
-    <button class="nav-item" onclick="setNav(this)">
-      <span class="nav-dot"></span>Market Prices
-    </button>
+    <button class="nav-item"><span class="nav-dot"></span>My Crops</button>
+    <button class="nav-item"><span class="nav-dot"></span>Irrigation</button>
+    <button class="nav-item"><span class="nav-dot"></span>Pest Control</button>
+    <button class="nav-item"><span class="nav-dot"></span>Market Prices</button>
   </div>
-
-  <div class="nav-section">
-    <div class="nav-label">Tools</div>
-    <button class="nav-item" onclick="setNav(this)">
-      <span class="nav-dot"></span>AI Crop Advisor
-    </button>
-    <button class="nav-item" onclick="setNav(this)">
-      <span class="nav-dot"></span>Government Schemes
-    </button>
-  </div>
-
   <div class="sidebar-footer">
     <div class="farmer-card">
       <div class="farmer-avatar">👨‍🌾</div>
       <div>
-        <div class="farmer-name">Ramesh Kumar</div>
-        <div class="farmer-loc">📍 Sasaram, Bihar</div>
+        <div class="farmer-name">Priyanshu Kumar</div>
+        <div class="farmer-loc" id="sidebar-loc">📍 Detecting...</div>
       </div>
     </div>
   </div>
 </aside>
 
-<!-- ── MAIN ── -->
+<!-- MAIN -->
 <main class="main">
-
-  <!-- TOPBAR -->
   <div class="topbar">
     <div>
-      <div class="topbar-title">Good Morning, Ramesh Ji 🙏</div>
+      <div class="topbar-title">Good Morning, Priyanshu Ji 🙏</div>
       <div class="topbar-date" id="today-date"></div>
     </div>
     <div class="topbar-right">
       <span class="badge badge-green">🌱 Kharif Season</span>
-      <span class="badge badge-blue">💧 Normal Monsoon</span>
-      <span class="badge badge-orange"><span class="alert-dot"></span>2 Alerts</span>
+      <span class="badge badge-blue" id="loc-badge">📍 Detecting location...</span>
     </div>
   </div>
 
-  <!-- CONTENT -->
   <div class="content">
 
-    <!-- STAT SUMMARY -->
-    <div class="grid3" style="margin-bottom:20px;">
-      <div class="stat-card">
-        <div class="sc-icon">🌡️</div>
-        <div class="sc-val">34°C</div>
-        <div class="sc-label">Today's Temperature</div>
-        <div class="sc-trend trend-up">↑ 2° from yesterday</div>
-      </div>
-      <div class="stat-card">
-        <div class="sc-icon">💧</div>
-        <div class="sc-val">68%</div>
-        <div class="sc-label">Soil Moisture</div>
-        <div class="sc-trend trend-up">✓ Ideal range</div>
-      </div>
-      <div class="stat-card">
-        <div class="sc-icon">🌧️</div>
-        <div class="sc-val">18mm</div>
-        <div class="sc-label">Rain Expected (3 days)</div>
-        <div class="sc-trend trend-up">Good for Paddy</div>
-      </div>
+    <!-- LOADING STATE -->
+    <div class="status-box" id="loading-box">
+      <div class="status-icon"><span class="spin">🌀</span></div>
+      <div class="status-title">Aapki location dhundh raha hoon...</div>
+      <div class="status-desc">Browser GPS use karega. Allow karo toh real weather milega!</div>
     </div>
 
-    <!-- WEATHER HERO -->
-    <div class="weather-hero">
-      <div class="weather-left">
-        <div class="weather-location">📍 Sasaram, Bihar &nbsp;·&nbsp; Bihar Plains Region</div>
-        <div class="weather-temp">34°C</div>
-        <div class="weather-desc">⛅ Partly Cloudy — Humidity 74% · Wind 12 km/h NE</div>
-        <div class="weather-advice">
-          💡 <strong>Aaj ka Salah:</strong> Kal shaam tak halki baarish aane ki sambhavna hai. Paddy ki sinchai aaj mat karo — barish se kaam ho jayega. Dhan ki fasal ke liye acha mauka hai.
+    <!-- PERMISSION DENIED -->
+    <div class="status-box" id="denied-box" style="display:none;">
+      <div class="status-icon">📍</div>
+      <div class="status-title">Location access nahi mili</div>
+      <div class="status-desc">Browser ne location deny kar diya. Please location allow karke dobara try karo.</div>
+      <button class="loc-btn" onclick="getLocation()">🔄 Dobara Try Karo</button>
+    </div>
+
+    <!-- MAIN DASHBOARD (hidden until loaded) -->
+    <div id="dashboard" style="display:none;">
+
+      <!-- STAT CARDS -->
+      <div class="grid3" style="margin-bottom:20px;">
+        <div class="stat-card">
+          <div class="sc-icon">🌡️</div>
+          <div class="sc-val" id="stat-temp">--°C</div>
+          <div class="sc-label">Abhi ka Taapman</div>
+          <div class="sc-trend" id="stat-feels">Feels like --°C</div>
+        </div>
+        <div class="stat-card">
+          <div class="sc-icon">💧</div>
+          <div class="sc-val" id="stat-hum">--%</div>
+          <div class="sc-label">Humidity</div>
+          <div class="sc-trend" id="stat-hum-note">--</div>
+        </div>
+        <div class="stat-card">
+          <div class="sc-icon">🌬️</div>
+          <div class="sc-val" id="stat-wind">-- km/h</div>
+          <div class="sc-label">Hawa Ki Raftaar</div>
+          <div class="sc-trend" id="stat-wind-dir">Direction: --</div>
         </div>
       </div>
-      <div class="weather-stats">
-        <div class="w-stat"><div class="w-stat-val">74%</div><div class="w-stat-label">Humidity</div></div>
-        <div class="w-stat"><div class="w-stat-val">12km/h</div><div class="w-stat-label">Wind</div></div>
-        <div class="w-stat"><div class="w-stat-val">1008</div><div class="w-stat-label">Pressure hPa</div></div>
-        <div class="w-stat"><div class="w-stat-val">8.2 UV</div><div class="w-stat-label">UV Index</div></div>
-      </div>
-    </div>
 
-    <!-- 7 DAY FORECAST -->
-    <div class="sec-head"><span class="sec-title">7-Din Ka Mausam</span><a class="sec-link">Poora Forecast →</a></div>
-    <div class="forecast-row" style="margin-bottom:24px;">
-      <div class="forecast-day today"><div class="fc-day">Aaj</div><div class="fc-icon">⛅</div><div class="fc-hi">34°</div><div class="fc-lo">26°</div></div>
-      <div class="forecast-day"><div class="fc-day">Kal</div><div class="fc-icon">🌧️</div><div class="fc-hi">30°</div><div class="fc-lo">24°</div></div>
-      <div class="forecast-day"><div class="fc-day">Parso</div><div class="fc-icon">🌧️</div><div class="fc-hi">28°</div><div class="fc-lo">23°</div></div>
-      <div class="forecast-day"><div class="fc-day">Thu</div><div class="fc-icon">🌤️</div><div class="fc-hi">32°</div><div class="fc-lo">25°</div></div>
-      <div class="forecast-day"><div class="fc-day">Fri</div><div class="fc-icon">☀️</div><div class="fc-hi">36°</div><div class="fc-lo">27°</div></div>
-      <div class="forecast-day"><div class="fc-day">Sat</div><div class="fc-icon">⛅</div><div class="fc-hi">33°</div><div class="fc-lo">25°</div></div>
-      <div class="forecast-day"><div class="fc-day">Sun</div><div class="fc-icon">🌦️</div><div class="fc-hi">31°</div><div class="fc-lo">24°</div></div>
-    </div>
-
-    <!-- AI ADVICE -->
-    <div class="advice-box">
-      <div>
-        <div class="advice-tag">🤖 AI Kisan Salahkar</div>
-        <div class="advice-text">
-          Aapke khet ki mitti mein <strong style="color:var(--wheat)">Nitrogen thoda kam</strong> hai. Kal baarish ke baad <strong style="color:var(--wheat)">Urea 25 kg/acre</strong> dalein. Paddy ki fasal abhi <strong style="color:var(--wheat)">tillering stage</strong> mein hai — yahi sahi waqt hai. Keedon ke liye bhi 2–3 din mein khet ki jaanch karein, stem borer ka risk thoda zyada hai is mausam mein.
+      <!-- WEATHER HERO -->
+      <div class="weather-hero">
+        <div class="weather-left">
+          <div class="weather-location" id="w-location">📍 --</div>
+          <div class="weather-temp" id="w-temp">--°C</div>
+          <div class="weather-desc" id="w-desc">Loading...</div>
+          <div class="weather-advice" id="w-advice">💡 Mausam ke hisaab se salah load ho rahi hai...</div>
+        </div>
+        <div class="weather-stats">
+          <div class="w-stat"><div class="w-stat-val" id="ws-hum">--%</div><div class="w-stat-label">Humidity</div></div>
+          <div class="w-stat"><div class="w-stat-val" id="ws-wind">-- km/h</div><div class="w-stat-label">Wind</div></div>
+          <div class="w-stat"><div class="w-stat-val" id="ws-vis">-- km</div><div class="w-stat-label">Visibility</div></div>
+          <div class="w-stat"><div class="w-stat-val" id="ws-cloud">--%</div><div class="w-stat-label">Badal</div></div>
         </div>
       </div>
-      <div class="advice-actions">
-        <button class="advice-btn btn-wheat">Poori Salaah Dekho</button>
-        <button class="advice-btn btn-ghost">Sawaal Pucho</button>
-      </div>
-    </div>
 
-    <!-- SOIL + CROPS -->
-    <div class="grid2">
-      <div class="card">
-        <div class="card-head">
-          <span class="card-title">Mitti ki Sehat</span>
-          <span class="card-icon">🌍</span>
+      <!-- FORECAST -->
+      <div class="sec-head"><span class="sec-title">5-Din Ka Mausam</span></div>
+      <div class="forecast-row" id="forecast-row">
+        <div class="forecast-day today"><div class="fc-day">Load...</div><div class="fc-icon">⏳</div><div class="fc-hi">--</div><div class="fc-lo">--</div></div>
+      </div>
+
+      <!-- AI ADVICE -->
+      <div class="advice-box">
+        <div>
+          <div class="advice-tag">🤖 AI Kisan Salahkar</div>
+          <div class="advice-text" id="ai-advice">Mausam data load ho raha hai — abhi salah milegi...</div>
         </div>
-        <div class="soil-meters">
-          <div class="meter-row">
-            <span class="meter-label">Naami (Moisture)</span>
-            <div class="meter-bar"><div class="meter-fill fill-blue" style="width:68%"></div></div>
-            <span class="meter-val">68%</span>
+        <div class="advice-actions">
+          <button class="advice-btn btn-wheat">Poori Salaah Dekho</button>
+          <button class="advice-btn btn-ghost">Sawaal Pucho</button>
+        </div>
+      </div>
+
+      <!-- SOIL + CROPS -->
+      <div class="grid2">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Mitti ki Sehat</span><span>🌍</span></div>
+          <div class="soil-meters">
+            <div class="meter-row"><span class="meter-label">Naami</span><div class="meter-bar"><div class="meter-fill fill-blue" id="m-moist" style="width:0%"></div></div><span class="meter-val" id="mv-moist">68%</span></div>
+            <div class="meter-row"><span class="meter-label">pH Level</span><div class="meter-bar"><div class="meter-fill fill-brown" style="width:68%"></div></div><span class="meter-val">6.8</span></div>
+            <div class="meter-row"><span class="meter-label">Nitrogen</span><div class="meter-bar"><div class="meter-fill fill-green" style="width:38%"></div></div><span class="meter-val" style="color:#dc2626">Low</span></div>
+            <div class="meter-row"><span class="meter-label">Phosphorus</span><div class="meter-bar"><div class="meter-fill fill-green" style="width:72%"></div></div><span class="meter-val">Good</span></div>
+            <div class="meter-row"><span class="meter-label">Potassium</span><div class="meter-bar"><div class="meter-fill fill-brown" style="width:55%"></div></div><span class="meter-val">Med</span></div>
           </div>
-          <div class="meter-row">
-            <span class="meter-label">pH Level</span>
-            <div class="meter-bar"><div class="meter-fill fill-brown" style="width:68%"></div></div>
-            <span class="meter-val">6.8</span>
-          </div>
-          <div class="meter-row">
-            <span class="meter-label">Nitrogen (N)</span>
-            <div class="meter-bar"><div class="meter-fill fill-green" style="width:38%"></div></div>
-            <span class="meter-val">Low</span>
-          </div>
-          <div class="meter-row">
-            <span class="meter-label">Phosphorus (P)</span>
-            <div class="meter-bar"><div class="meter-fill fill-green" style="width:72%"></div></div>
-            <span class="meter-val">Good</span>
-          </div>
-          <div class="meter-row">
-            <span class="meter-label">Potassium (K)</span>
-            <div class="meter-bar"><div class="meter-fill fill-brown" style="width:55%"></div></div>
-            <span class="meter-val">Med</span>
-          </div>
-          <div class="meter-row">
-            <span class="meter-label">Temperature</span>
-            <div class="meter-bar"><div class="meter-fill fill-orange" style="width:78%"></div></div>
-            <span class="meter-val">28°C</span>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Meri Faslein</span><span>🌱</span></div>
+          <div class="crop-list">
+            <div class="crop-item"><div class="crop-emoji">🌾</div><div class="crop-info"><div class="crop-name">Dhan (Paddy)</div><div class="crop-status">Boyi: 15 June · 3 acre</div></div><span class="crop-stage stage-grow">Tillering</span></div>
+            <div class="crop-item"><div class="crop-emoji">🌽</div><div class="crop-info"><div class="crop-name">Makka</div><div class="crop-status">Boyi: 10 June · 2 acre</div></div><span class="crop-stage stage-ready">Tasseling</span></div>
+            <div class="crop-item"><div class="crop-emoji">🥬</div><div class="crop-info"><div class="crop-name">Arhar</div><div class="crop-status">Boyi: 20 June · 1.5 acre</div></div><span class="crop-stage stage-grow">Seedling</span></div>
+            <div class="crop-item"><div class="crop-emoji">🌿</div><div class="crop-info"><div class="crop-name">Ganna</div><div class="crop-status">Feb se · 1 acre</div></div><span class="crop-stage stage-harvest">Ready Soon</span></div>
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-head">
-          <span class="card-title">Meri Faslein</span>
-          <span class="card-icon">🌱</span>
-        </div>
-        <div class="crop-list">
-          <div class="crop-item">
-            <div class="crop-emoji">🌾</div>
-            <div class="crop-info">
-              <div class="crop-name">Dhan (Paddy)</div>
-              <div class="crop-status">Boyi: 15 June · 3 acre</div>
-            </div>
-            <span class="crop-stage stage-grow">Tillering</span>
-          </div>
-          <div class="crop-item">
-            <div class="crop-emoji">🌽</div>
-            <div class="crop-info">
-              <div class="crop-name">Makka (Maize)</div>
-              <div class="crop-status">Boyi: 10 June · 2 acre</div>
-            </div>
-            <span class="crop-stage stage-ready">Tasseling</span>
-          </div>
-          <div class="crop-item">
-            <div class="crop-emoji">🥬</div>
-            <div class="crop-info">
-              <div class="crop-name">Arhar (Pigeon Pea)</div>
-              <div class="crop-status">Boyi: 20 June · 1.5 acre</div>
-            </div>
-            <span class="crop-stage stage-plant">Seedling</span>
-          </div>
-          <div class="crop-item">
-            <div class="crop-emoji">🌿</div>
-            <div class="crop-info">
-              <div class="crop-name">Ganna (Sugarcane)</div>
-              <div class="crop-status">Lagaaya: Feb · 1 acre</div>
-            </div>
-            <span class="crop-stage stage-harvest">Ready Soon</span>
+
+      <!-- PEST + MARKET -->
+      <div class="grid2">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Keet aur Bimari Alerts</span><span>⚠️</span></div>
+          <div class="alerts-list">
+            <div class="alert-item alert-high"><div class="alert-title">🐛 Stem Borer — Dhan</div><div class="alert-desc">Is hafte humid mausam stem borer ke liye anukul hai. Yellow pheromone trap lagaein. 3–4 din mein spray karein agar 5% se zyada paude prabhavit hon.</div><span class="alert-tag tag-high">Zyada Khatre</span></div>
+            <div class="alert-item alert-med"><div class="alert-title">🍄 Brown Leaf Spot — Makka</div><div class="alert-desc">Kuch khet mein brown spot dikhe hain. Mancozeb 2g/litre spray karein.</div><span class="alert-tag tag-med">Madhyam</span></div>
+            <div class="alert-item alert-low"><div class="alert-title">✅ Arhar — Sab Theek</div><div class="alert-desc">Abhi koi keet nahi. Haftey mein ek baar jaanch karte rahein.</div><span class="alert-tag tag-low">Normal</span></div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- PEST ALERTS + MARKET -->
-    <div class="grid2">
-      <div class="card">
-        <div class="card-head"><span class="card-title">Keet aur Bimari Alerts</span><span class="card-icon">⚠️</span></div>
-        <div class="alerts-list">
-          <div class="alert-item alert-high">
-            <div class="alert-title">🐛 Stem Borer — Dhan</div>
-            <div class="alert-desc">Is hafte ka madam humid mausam stem borer ke liye anukul hai. Khet mein yellow pheromone trap lagaein. 3–4 din mein spray karein agar 5% se zyada paude prabhavit hon.</div>
-            <span class="alert-tag tag-high">Zyada Khatre</span>
-          </div>
-          <div class="alert-item alert-med">
-            <div class="alert-title">🍄 Brown Leaf Spot — Makka</div>
-            <div class="alert-desc">Kuch khet mein brown spot dikhe hain. Mancozeb 2g/litre spray karein. Khet mein paani na rookne dein.</div>
-            <span class="alert-tag tag-med">Madhyam Khatre</span>
-          </div>
-          <div class="alert-item alert-low">
-            <div class="alert-title">✅ Arhar — Sab Theek</div>
-            <div class="alert-desc">Abhi koi keet ya bimari nahi mili. Seedling stage mein hai — haftey mein ek baar jaanch karte rahein.</div>
-            <span class="alert-tag tag-low">Normal</span>
-          </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Mandi Bhav (Aaj)</span><span>📈</span></div>
+          <table class="market-table">
+            <thead><tr><th>Fasal</th><th>Bhav</th><th>MSP</th></tr></thead>
+            <tbody>
+              <tr><td>🌾 Dhan</td><td class="price-up">₹2,183</td><td><span class="msp-badge">₹2,183</span></td></tr>
+              <tr><td>🌽 Makka</td><td>₹1,890</td><td><span class="msp-badge">₹1,870</span></td></tr>
+              <tr><td>🥬 Arhar</td><td class="price-up">₹7,000</td><td><span class="msp-badge">₹7,000</span></td></tr>
+              <tr><td>🧅 Pyaaz</td><td class="price-dn">₹1,240</td><td>—</td></tr>
+              <tr><td>🥔 Aloo</td><td>₹980</td><td>—</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div class="card">
-        <div class="card-head"><span class="card-title">Mandi Bhav (Aaj)</span><span class="card-icon">📈</span></div>
-        <table class="market-table">
-          <thead><tr><th>Fasal</th><th>Bhav</th><th>Badlav</th><th>MSP</th></tr></thead>
-          <tbody>
-            <tr>
-              <td><div class="crop-cell">🌾 Dhan</div></td>
-              <td class="price-up">₹2,183</td>
-              <td class="price-up price-arr">▲ ₹45</td>
-              <td><span class="msp-badge">₹2,183</span></td>
-            </tr>
-            <tr>
-              <td><div class="crop-cell">🌽 Makka</div></td>
-              <td>₹1,890</td>
-              <td class="price-dn price-arr">▼ ₹20</td>
-              <td><span class="msp-badge">₹1,870</span></td>
-            </tr>
-            <tr>
-              <td><div class="crop-cell">🥬 Arhar</div></td>
-              <td class="price-up">₹7,000</td>
-              <td class="price-up price-arr">▲ ₹120</td>
-              <td><span class="msp-badge">₹7,000</span></td>
-            </tr>
-            <tr>
-              <td><div class="crop-cell">🧅 Pyaaz</div></td>
-              <td class="price-dn">₹1,240</td>
-              <td class="price-dn price-arr">▼ ₹80</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><div class="crop-cell">🥔 Aloo</div></td>
-              <td>₹980</td>
-              <td class="price-up price-arr">▲ ₹10</td>
-              <td>—</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
 
-    <!-- IRRIGATION SCHEDULE -->
-    <div class="card">
-      <div class="card-head"><span class="card-title">Sinchai Ka Schedule</span><span class="card-icon">💧</span></div>
-      <div class="irrigate-grid">
-        <div class="irr-day today"><div class="irr-label">Aaj</div><div class="irr-icon">⏸️</div><div class="irr-amt">Skip</div></div>
-        <div class="irr-day on"><div class="irr-label">Kal</div><div class="irr-icon">💧</div><div class="irr-amt">Baarish</div></div>
-        <div class="irr-day on"><div class="irr-label">Parso</div><div class="irr-icon">💧</div><div class="irr-amt">Baarish</div></div>
-        <div class="irr-day"><div class="irr-label">Thu</div><div class="irr-icon">⏸️</div><div class="irr-amt">Skip</div></div>
-        <div class="irr-day on"><div class="irr-label">Fri</div><div class="irr-icon">🚿</div><div class="irr-amt">30 min</div></div>
-        <div class="irr-day on"><div class="irr-label">Sat</div><div class="irr-icon">🚿</div><div class="irr-amt">20 min</div></div>
-        <div class="irr-day"><div class="irr-label">Sun</div><div class="irr-icon">⏸️</div><div class="irr-amt">Rest</div></div>
-      </div>
-    </div>
-
-  </div><!-- /content -->
+    </div><!-- /dashboard -->
+  </div>
 </main>
-</div><!-- /app -->
+</div>
 
 <script>
+const API_KEY = '6ac51e9200d462ce5c0f10cf410dba94';
+
 // Date
 const d = new Date();
-const opts = {weekday:'long',year:'numeric',month:'long',day:'numeric'};
-document.getElementById('today-date').textContent = d.toLocaleDateString('hi-IN', opts);
+document.getElementById('today-date').textContent = d.toLocaleDateString('hi-IN', {weekday:'long',year:'numeric',month:'long',day:'numeric'});
 
-// Nav
-function setNav(el){
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  el.classList.add('active');
+const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const dayHi = ['Aaj','Kal','Parso','3rd Day','4th Day','5th Day'];
+
+function getWeatherIcon(id) {
+  if(id>=200&&id<300) return '⛈️';
+  if(id>=300&&id<400) return '🌦️';
+  if(id>=500&&id<600) return '🌧️';
+  if(id>=600&&id<700) return '❄️';
+  if(id>=700&&id<800) return '🌫️';
+  if(id===800) return '☀️';
+  if(id===801) return '🌤️';
+  if(id<=804) return '⛅';
+  return '🌡️';
 }
 
-// Animate bars on load
-window.addEventListener('load',()=>{
-  document.querySelectorAll('.meter-fill').forEach(b=>{
-    const w=b.style.width; b.style.width='0'; 
-    setTimeout(()=>b.style.width=w,200);
+function getFarmingAdvice(weather, temp, hum) {
+  const id = weather.id;
+  let advice = '';
+  if(id>=500&&id<600) advice = `💡 <strong>Baarish ho rahi hai!</strong> Aaj sinchai mat karo — paani waste hoga. Khet mein drainage theek rakho taaki jad sadne na paye.`;
+  else if(id===800) advice = `💡 <strong>Dhoop tej hai (${temp}°C).</strong> Subah ya shaam ko sinchai karo. Fasal ko dhoop se bachane ke liye mulching use karo.`;
+  else if(id>=801&&id<=803) advice = `💡 <strong>Maheena mausam hai.</strong> Aaj ka din khad dalne ke liye acha hai. Mitti ka moisture check karo.`;
+  else if(temp>38) advice = `💡 <strong>Zyada garmi (${temp}°C)!</strong> Fasl ko paani zyada chahiye aaj. Dopahar mein khet mein kaam mat karo.`;
+  else if(hum>85) advice = `💡 <strong>Humidity bahut zyada (${hum}%).</strong> Fungal bimari ka darr hai. Fungicide spray ready rakho.`;
+  else advice = `💡 <strong>Mausam theek hai.</strong> Khet ki regular jaanch karo. Soil moisture dekho aur zaroorat ho toh sinchai karo.`;
+  return advice;
+}
+
+function getAIAdvice(weather, temp, hum, city) {
+  const id = weather.id;
+  let msg = `<strong style="color:var(--wheat)">${city}</strong> ka mausam aaj `;
+  if(id>=500&&id<600) msg += `barsaat wala hai. Sinchai band rakho aur khet mein paani nikalne ka intezam karo. `;
+  else if(id===800) msg += `saaf aur dhoop wala hai (${temp}°C). `;
+  else msg += `${weather.description} jaisa hai (${temp}°C). `;
+  if(hum>80) msg += `Humidity <strong style="color:var(--wheat)">${hum}%</strong> — bahut zyada hai, <strong style="color:var(--wheat)">fungal bimari</strong> ka khatra ho sakta hai. Fasal pe nazar rakho. `;
+  else if(hum<40) msg += `Humidity kam hai (${hum}%) — <strong style="color:var(--wheat)">sinchai zaroori</strong> ho sakti hai aaj. `;
+  msg += `Nitrogen level check karo aur zaroorat ho toh Urea 25 kg/acre dalo.`;
+  return msg;
+}
+
+function degToDir(deg) {
+  const dirs = ['N','NE','E','SE','S','SW','W','NW'];
+  return dirs[Math.round(deg/45)%8];
+}
+
+async function fetchWeather(lat, lon) {
+  try {
+    // Current weather
+    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=en`);
+    const data = await res.json();
+
+    // Forecast
+    const fRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&cnt=40`);
+    const fData = await fRes.json();
+
+    if(data.cod !== 200) throw new Error(data.message);
+
+    const city = data.name + ', ' + data.sys.country;
+    const temp = Math.round(data.main.temp);
+    const feels = Math.round(data.main.feels_like);
+    const hum = data.main.humidity;
+    const wind = Math.round(data.wind.speed * 3.6);
+    const windDir = degToDir(data.wind.deg || 0);
+    const vis = Math.round((data.visibility||0)/1000);
+    const clouds = data.clouds.all;
+    const weather = data.weather[0];
+    const icon = getWeatherIcon(weather.id);
+
+    // Update UI
+    document.getElementById('sidebar-loc').textContent = '📍 ' + city;
+    document.getElementById('loc-badge').textContent = '📍 ' + city;
+
+    document.getElementById('stat-temp').textContent = temp + '°C';
+    document.getElementById('stat-feels').textContent = 'Feels like ' + feels + '°C';
+    document.getElementById('stat-hum').textContent = hum + '%';
+    document.getElementById('stat-hum-note').textContent = hum > 70 ? '⚠️ Fungal risk high' : '✓ Normal';
+    document.getElementById('stat-wind').textContent = wind + ' km/h';
+    document.getElementById('stat-wind-dir').textContent = 'Direction: ' + windDir;
+
+    document.getElementById('w-location').textContent = '📍 ' + city;
+    document.getElementById('w-temp').textContent = temp + '°C';
+    document.getElementById('w-desc').textContent = icon + ' ' + weather.description.charAt(0).toUpperCase() + weather.description.slice(1) + ' · Humidity ' + hum + '% · Wind ' + wind + ' km/h ' + windDir;
+    document.getElementById('w-advice').innerHTML = getFarmingAdvice(weather, temp, hum);
+
+    document.getElementById('ws-hum').textContent = hum + '%';
+    document.getElementById('ws-wind').textContent = wind + ' km/h';
+    document.getElementById('ws-vis').textContent = vis + ' km';
+    document.getElementById('ws-cloud').textContent = clouds + '%';
+
+    document.getElementById('m-moist').style.width = hum + '%';
+    document.getElementById('mv-moist').textContent = hum + '%';
+
+    document.getElementById('ai-advice').innerHTML = getAIAdvice(weather, temp, hum, city);
+
+    // Forecast - daily from 3hr intervals
+    const dailyMap = {};
+    fData.list.forEach(item => {
+      const date = item.dt_txt.split(' ')[0];
+      if(!dailyMap[date]) dailyMap[date] = {temps:[], ids:[]};
+      dailyMap[date].temps.push(item.main.temp);
+      dailyMap[date].ids.push(item.weather[0].id);
+    });
+    const dailyKeys = Object.keys(dailyMap).slice(0,5);
+    const forecastHTML = dailyKeys.map((date, i) => {
+      const temps = dailyMap[date].temps;
+      const hi = Math.round(Math.max(...temps));
+      const lo = Math.round(Math.min(...temps));
+      const avgId = dailyMap[date].ids[Math.floor(dailyMap[date].ids.length/2)];
+      const dayName = i === 0 ? 'Aaj' : i === 1 ? 'Kal' : days[new Date(date).getDay()];
+      return `<div class="forecast-day ${i===0?'today':''}">
+        <div class="fc-day">${dayName}</div>
+        <div class="fc-icon">${getWeatherIcon(avgId)}</div>
+        <div class="fc-hi">${hi}°</div>
+        <div class="fc-lo">${lo}°</div>
+      </div>`;
+    }).join('');
+    document.getElementById('forecast-row').innerHTML = forecastHTML;
+
+    document.getElementById('loading-box').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+
+  } catch(err) {
+    document.getElementById('loading-box').innerHTML = `
+      <div class="status-icon">❌</div>
+      <div class="status-title">Weather load nahi hua</div>
+      <div class="status-desc">${err.message || 'Internet check karo ya API key verify karo.'}</div>
+      <button class="loc-btn" onclick="getLocation()">🔄 Dobara Try Karo</button>`;
+  }
+}
+
+function getLocation() {
+  document.getElementById('loading-box').style.display = 'block';
+  document.getElementById('denied-box').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'none';
+
+  if(!navigator.geolocation) {
+    document.getElementById('loading-box').innerHTML = `<div class="status-icon">😔</div><div class="status-title">GPS support nahi hai</div><div class="status-desc">Yeh browser geolocation support nahi karta.</div>`;
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    pos => fetchWeather(pos.coords.latitude, pos.coords.longitude),
+    () => {
+      document.getElementById('loading-box').style.display = 'none';
+      document.getElementById('denied-box').style.display = 'block';
+    },
+    {timeout:10000}
+  );
+}
+
+// Nav
+document.querySelectorAll('.nav-item').forEach(btn => {
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
   });
 });
+
+// Start
+getLocation();
 </script>
 </body>
 </html>
